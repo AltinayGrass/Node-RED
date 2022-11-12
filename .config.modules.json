@@ -1,0 +1,8 @@
+{
+    "roslib": {
+        "spec": "roslib",
+        "module": "roslib",
+        "builtin": false,
+        "known": false
+    }
+}
