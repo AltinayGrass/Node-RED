@@ -667,7 +667,7 @@
         "func": "if (global.get(\"gstamp_j1\") === undefined) {\n    global.set(\"gstamp_j1\", msg.payload.header.stamp)\n}\n\nif (global.get(\"gpos_j1\") === undefined) {\n    global.set(\"gpos_j1\", msg.payload.position[0])\n}\n\nif (global.get(\"gvelj1\") === undefined) {\n    global.set(\"gvelj1\",0)\n}\n\nvar lvel = global.get(\"gvelj1\")\nvar lstamp = global.get(\"gstamp_j1\")\nvar lpos= global.get(\"gpos_j1\")\n\nvar dt = (msg.payload.header.stamp.nsecs-lstamp.nsecs)/1000000000 + \n        (msg.payload.header.stamp.secs -lstamp.secs)/1000;\nvar dx = (msg.payload.position[0]-lpos)*180/Math.PI;\n\nvar vel= (lvel+ dx/dt)/2;\n\nglobal.set(\"gstamp_j1\",msg.payload.header.stamp);\nglobal.set(\"gpos_j1\", msg.payload.position[0]);\nglobal.set(\"gvelj1\",vel);\n\n    msg.topic = \"J1\";\n\n//if (Math.abs(vel) > 0.001) \n    msg.payload= vel.toFixed(2);\n//else \n//    msg.payload=0.0;\n\nreturn msg;\n    ",
         "outputs": 1,
         "noerr": 0,
-        "initialize": "",
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"gvelj1\", 0);\nglobal.set(\"gvelj2\", 0);\nglobal.set(\"gvelj3\", 0);\nglobal.set(\"gvelj4\", 0);\nglobal.set(\"gvelj5\", 0);\nglobal.set(\"gvelj6\", 0);",
         "finalize": "",
         "libs": [],
         "x": 710,
